@@ -15,6 +15,10 @@ module.exports = {
         secondary: "#dda15e",
         accent: "#606c38",
         text: "#283618",
+        hoverBg: "#344e41",
+      },
+      fontFamily: {
+        poppins: "Poppins",
       },
     },
   },
