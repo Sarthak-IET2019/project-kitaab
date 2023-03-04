@@ -1,4 +1,5 @@
 import { auth } from '@/Firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 // Function to handle new user registration 
 const HandleUserSignUp = async (email, password) => {
