@@ -32,7 +32,7 @@ export default function Home() {
                 type={"email"}
                 id={"email"}
                 name={"email"}
-                placeholder={"Your email"}
+                placeholder={"Your email"} onChange={(event) => { setRegisterEmail(event.target.value); }}
                 register={register}
                 error={errors?.email?.message}
               />
@@ -50,8 +50,9 @@ export default function Home() {
               placeholder={"Your email"}
               register={() => {}}
             /> */}
-              <button className="bg-hoverBg rounded-lg text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
-                Sign in <BiLogInCircle />
+              <button onClick={login
+              } className="bg-hoverBg rounded-lg text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
+                Sign In <BiLogInCircle />
               </button>
             </form>
           </div>
