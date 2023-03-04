@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/schemas/auth";
 import { FiUserPlus } from "react-icons/fi";
+import { AuthServices } from "@/services/auth.service";
 
-const RegisterationForm = ({ setSlideFormX }) => {
+const RegistrationForm = ({ setSlideFormX }) => {
   // Setting up react hook form
   const {
     register: register_signup,
@@ -14,6 +15,7 @@ const RegisterationForm = ({ setSlideFormX }) => {
 
   // Handle Signup
   async function handleSignUp(data) {
+    AuthServices.HandleUserSignUp(data.email, data.password);
     console.log(data);
   }
   return (
@@ -53,7 +55,7 @@ const RegisterationForm = ({ setSlideFormX }) => {
         </button>
       </form>
       <h5 className="mt-5">
-        New user?
+        Already signed up?
         <span
           className="text-blueLink"
           role={"button"}
@@ -62,11 +64,11 @@ const RegisterationForm = ({ setSlideFormX }) => {
           }}
         >
           {" "}
-          Register here.
+          Login now.
         </span>
       </h5>
     </div>
   );
 };
 
-export default RegisterationForm;
+export default RegistrationForm;
