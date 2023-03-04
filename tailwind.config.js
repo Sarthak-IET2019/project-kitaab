@@ -16,6 +16,7 @@ module.exports = {
         accent: "#606c38",
         text: "#283618",
         hoverBg: "#344e41",
+        blueLink: "#3498DB",
       },
       fontFamily: {
         poppins: "Poppins",
