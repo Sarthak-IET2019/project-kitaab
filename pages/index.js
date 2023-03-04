@@ -1,5 +1,5 @@
 import LoginForm from "@/pageComponents/Home/LoginForm";
-import RegisterationForm from "@/pageComponents/Home/RegisterationForm";
+import RegistrationForm from "@/pageComponents/Home/RegistrationForm";
 import { useState } from "react";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
             className="relative whitespace-nowrap min-w-full rounded-md py-8 px-8 bg-white  transition-all  duration-500"
             style={{ transform: `translateX(${slideFormX})` }}
           >
-            <RegisterationForm setSlideFormX={setSlideFormX} />
+            <RegistrationForm setSlideFormX={setSlideFormX} />
           </div>
         </div>
       </div>
