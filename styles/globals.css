@@ -25,3 +25,35 @@
     transform: scale(1);
   }
 }
+
+.animate-rotate {
+  transform-origin: top;
+  transform: rotate(15deg);
+  animation: increase 1s linear forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes increase {
+  0% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+.animate-width {
+  width: 0;
+  overflow: hidden;
+  animation: animWidth 1s linear forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes animWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
