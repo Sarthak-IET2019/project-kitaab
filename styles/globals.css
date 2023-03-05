@@ -57,3 +57,24 @@
     width: 100%;
   }
 }
+
+.mostly-customized-scrollbar {
+  overflow: auto;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Demonstrate a "mostly customized" scrollbar
+   * (won't be visible otherwise if width/height is specified) */
+.mostly-customized-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+  /* or add it to the track */
+}
+
+.text-left {
+  text-orientation: sideways;
+}
