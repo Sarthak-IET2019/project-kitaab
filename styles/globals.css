@@ -4,3 +4,24 @@
 @tailwind utilities;
 
 /* this is shalini */
+
+.gradient-text {
+  background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.animate-dropin {
+  transform: scale(0);
+  animation: dropin 300ms linear forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes dropin {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
