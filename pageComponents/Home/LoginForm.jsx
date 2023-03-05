@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 import { BiLogInCircle } from "react-icons/bi";
 import { loginSchema } from "@/schemas/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthServices } from "@/services/auth.service";
+import { useRouter } from "next/router";
+import { CODES } from "@/globals/globals";
 
 const LoginForm = ({ setSlideFormX }) => {
+  const router = useRouter();
   // Setting up react hook form
   const {
     register: register_login,
@@ -14,6 +18,15 @@ const LoginForm = ({ setSlideFormX }) => {
 
   // Handle Login
   async function handleLogin(data) {
+    let responseCode = await AuthServices.HandleUserSignIn(
+      data.email,
+      data.password
+    );
+    if (responseCode === CODES.SUCCESS) {
+      router.push("/topics");
+    } else {
+      alert("No user found or username and password not matching");
+    }
     console.log(data);
   }
   return (
