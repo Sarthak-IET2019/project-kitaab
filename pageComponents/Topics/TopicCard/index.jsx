@@ -1,8 +1,13 @@
+import { useRouter } from "next/router";
+
 const TopicCard = ({ topicItem }) => {
+  const router = useRouter();
   return (
     <div
       className="flex flex-col bg-white rounded pt-10 py-4 px-4 transition-all min-w-[150px] min-h-[150px] max-w-max justify-center items-center relative overflow-hidden animate-dropin hover:scale-110"
-      onClick={() => {}}
+      onClick={() => {
+        router.push(`topics/${topicItem?.id}`);
+      }}
       role={"button"}
       style={{ animationDelay: `${topicItem?.day * 100}ms` }}
     >
