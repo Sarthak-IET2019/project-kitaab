@@ -9,7 +9,7 @@ export const FetchTopicsFromStore = async () => {
         ...doc.data(),
         id: doc.id,
       }));
-      return newData;
+      return newData.sort((a, b) => a?.day - b?.day);
     });
     return data;
   } catch (error) {
