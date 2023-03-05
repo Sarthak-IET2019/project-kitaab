@@ -1,4 +1,5 @@
 import { auth } from "@/Firebase";
+import { CODES } from "@/globals/globals";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -10,9 +11,9 @@ import {
 const HandleUserSignUp = async (email, password) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(user);
+    return CODES.SUCCESS;
   } catch (error) {
-    console.log(error.message);
+    return CODES.ERROR;
   }
 };
 

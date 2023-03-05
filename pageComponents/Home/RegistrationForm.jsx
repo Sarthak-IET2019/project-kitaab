@@ -4,8 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/schemas/auth";
 import { FiUserPlus } from "react-icons/fi";
 import { AuthServices } from "@/services/auth.service";
+import { CODES } from "@/globals/globals";
+import { useRouter } from "next/router";
 
 const RegistrationForm = ({ setSlideFormX }) => {
+  const router = useRouter();
+
   // Setting up react hook form
   const {
     register: register_signup,
@@ -15,8 +19,16 @@ const RegistrationForm = ({ setSlideFormX }) => {
 
   // Handle Signup
   async function handleSignUp(data) {
-    AuthServices.HandleUserSignUp(data.email, data.password);
-    console.log(data);
+    let responseCode = await AuthServices.HandleUserSignUp(
+      data.email,
+      data.password
+    );
+    console.log(responseCode);
+    if (responseCode === CODES.SUCCESS) {
+      router.push("/topics");
+    } else {
+      alert("Already registered this email address. Try a different one!");
+    }
   }
   return (
     <div className="relative w-full">
