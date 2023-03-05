@@ -34,7 +34,7 @@ import { db } from "@/Firebase"
 // }
 // Basically loop through all docs data and put it in topicList
 
-const FetchTopicsFromStore = async () => {
+export const FetchTopicsFromStore = async () => {
     try {
         db.collection('Topics').get().then((snapshot) => {
             console.log(snapshot);
