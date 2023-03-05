@@ -14,6 +14,7 @@ export const FetchTopicsFromStore = async () => {
     return data;
   } catch (error) {
     console.log(error.message);
+    return error;
   }
 };
 
