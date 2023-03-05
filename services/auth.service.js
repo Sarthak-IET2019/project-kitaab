@@ -1,7 +1,7 @@
 import { auth } from "@/Firebase";
 import {
   createUserWithEmailAndPassword,
-  sendEmailVerification,
+  // sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -9,11 +9,7 @@ import {
 // Function to handle new user registration
 const HandleUserSignUp = async (email, password) => {
   try {
-    const user = createUserWithEmailAndPassword(auth, email, password).then(
-      (userDetails) => {
-        userDetails.user.sendEmailVerification();
-      }
-    );
+    const user = await createUserWithEmailAndPassword(auth, email, password)
     console.log(user);
   } catch (error) {
     console.log(error.message);
