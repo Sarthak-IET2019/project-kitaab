@@ -2,7 +2,7 @@ import { auth } from "@/Firebase";
 import { CODES } from "@/globals/globals";
 import {
   createUserWithEmailAndPassword,
-  sendEmailVerification,
+  // sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
