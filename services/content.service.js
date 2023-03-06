@@ -31,7 +31,7 @@ export const FetchTopicDetailsFromStore = async (documentId) => {
   }
 };
 
-export const UpdateTopicDetailsInStore = async (documentId) => {
+export const UpdateTopicDetailsInStore = async (documentId,payload) => {
   try {
     const data = {
       author: "jw lawrence",
@@ -49,15 +49,28 @@ export const UpdateTopicDetailsInStore = async (documentId) => {
         console.log(
           "A New Document Field has been added to an existing document"
         );
+        return CODES.SUCCESS;
       })
 
       .catch((error) => {
         console.log(error);
+        return CODES.ERROR;
       });
   } catch (error) {
     console.log(error.message);
   }
 };
+
+// export const UpdateTopicDetailsInStore = async (documentId,payload) => {
+//   try {
+    
+//     const docRef = doc(db, "Topics", documentId);
+//     await updateDoc(docRef,payload)
+//     return CODES.SUCCESS 
+//   } catch (error) {
+//     return CODES.ERROR
+//   }
+// };
 
 // Add document to store
 export const AddDocumentToStore = async (payload) => {
