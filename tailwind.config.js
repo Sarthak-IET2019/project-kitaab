@@ -17,6 +17,9 @@ module.exports = {
         hoverBg: "#015d8f",
         blueLink: "#3498DB",
         white: "#fff",
+        green: "#C8FDD4",
+        green_text: "#08A418",
+        red: "#FFD2CE",
       },
       boxShadow: {
         shadow: "2px 2px 10px 5px rgba(0,0,0,0.05)",

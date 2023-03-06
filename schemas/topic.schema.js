@@ -7,4 +7,5 @@ export const topicSchema = yup.object({
   author_email: yup.string().email().required("Fill this required field"),
   video: yup.string().required("Fill this required field"),
   description: yup.string().required("Fill this required field"),
+  psp_link: yup.string().url().required("Fill this required field"),
 });
