@@ -17,7 +17,7 @@ const TopicCard = ({ topicItem }) => {
           DAY
         </span>
       </div>
-      <div className="absolute top-0 flex w-full whitespace-nowrap h-[40px] bg-[#e63946] justify-around">
+      <div className="absolute top-0 flex w-full whitespace-nowrap h-[40px] bg-text justify-around">
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>

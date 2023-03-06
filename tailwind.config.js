@@ -15,7 +15,7 @@ module.exports = {
         text: "#283618",
         hoverBg: "#344e41",
         blueLink: "#3498DB",
-        blue: "#56D8E4",
+        blue: "#e9edc9",
         purple: "#9F01EA",
       },
       fontFamily: {
