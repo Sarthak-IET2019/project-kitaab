@@ -5,8 +5,9 @@ import { CODES } from "@/globals/globals";
 import { useRouter } from "next/router";
 import { topicSchema } from "@/schemas/topic.schema";
 import { FiUserPlus } from "react-icons/fi";
+import { MdOutlineClose } from "react-icons/md";
 import { AddDocumentToStore } from "@/services/content.service";
-const AddTopic = () => {
+const UpdateTopic = ({ data, setUpdateModalToggle }) => {
   const router = useRouter();
 
   // Setting up react hook form
@@ -51,14 +52,19 @@ const AddTopic = () => {
     console.log(payload);
   };
   return (
-    <div className="relative w-full flex justify-center items-center">
+    <div className="relative w-full flex justify-center items-center h-full">
+      <button
+        onClick={() => setUpdateModalToggle(false)}
+        className="absolute top-1 right-1 text-white p-4 bg-blueLink rounded"
+      >
+        <MdOutlineClose size={"24px"} />
+      </button>
       <form
         onSubmit={handleSubmit(handleAddTopic)}
-        className="flex flex-col gap-y-4 w-full max-w-[600px] p-6 shadow-shadow rounded"
+        className="flex flex-col gap-y-4 w-full max-w-[600px] p-6 shadow-shadow rounded bg-white"
       >
         <div className="relative ">
-          <h5>Welcome back,</h5>
-          <h3 className=" text-[40px] text-text font-semibold">New Topic</h3>
+          <h3 className=" text-[40px] text-text font-semibold">Edit Topic</h3>
         </div>
         <Input
           type={"text"}
@@ -120,11 +126,11 @@ const AddTopic = () => {
           }`}
         />
         <button className="bg-accent overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
-          Add Topic <FiUserPlus />
+          Update Topic <FiUserPlus />
         </button>
       </form>
     </div>
   );
 };
 
-export default AddTopic;
+export default UpdateTopic;

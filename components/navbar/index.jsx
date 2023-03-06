@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MdLogout } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
 const Navbar = () => {
   const router = useRouter();
   const [logoutView, setLogoutView] = useState(true);
@@ -40,6 +41,11 @@ const Navbar = () => {
             onClick={HandleLogout}
           >
             <MdLogout size={"20px"} />
+          </button>
+          <button className="outline-none bg-accent text-white font-medium p-2 rounded-full font-poppins hover:bg-hoverBg transition-all flex items-center justify-center gap-x-2">
+            <Link href={"/admin"} className="font-medium font-poppins">
+              <RiAdminFill size={"20px"} />
+            </Link>
           </button>
         </div>
       )}
