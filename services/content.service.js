@@ -31,6 +31,34 @@ export const FetchTopicDetailsFromStore = async (documentId) => {
   }
 };
 
+export const UpdateTopicDetailsInStore = async (documentId) => {
+  try {
+    const data = {
+      author: "jw lawrence",
+      day: 2,
+      description: "this is the new update",
+      id: "string",
+      status: true,
+      title: "Lorem",
+      video_url: "www.youtube.com",
+    };
+
+    const docRef = doc(db, "Topics", documentId);
+    updateDoc(docRef, data)
+      .then((docRef) => {
+        console.log(
+          "A New Document Field has been added to an existing document"
+        );
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 // Add document to store
 export const AddDocumentToStore = async (payload) => {
   try {
