@@ -4,8 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/schemas/auth";
 import { FiUserPlus } from "react-icons/fi";
 import { AuthServices } from "@/services/auth.service";
+import { CODES } from "@/globals/globals";
+import { useRouter } from "next/router";
 
 const RegistrationForm = ({ setSlideFormX }) => {
+  const router = useRouter();
+
   // Setting up react hook form
   const {
     register: register_signup,
@@ -15,13 +19,21 @@ const RegistrationForm = ({ setSlideFormX }) => {
 
   // Handle Signup
   async function handleSignUp(data) {
-    AuthServices.HandleUserSignUp(data.email, data.password);
-    console.log(data);
+    let responseCode = await AuthServices.HandleUserSignUp(
+      data.email,
+      data.password
+    );
+    console.log(responseCode);
+    if (responseCode === CODES.SUCCESS) {
+      router.push("/topics");
+    } else {
+      alert("Already registered this email address. Try a different one!");
+    }
   }
   return (
     <div className="relative w-full">
-      <h5>Hey Maadi!</h5>
-      <h3 className="pb-4 text-[40px] text-text font-semibold">Join Now</h3>
+      <h5>Heyyyy!</h5>
+      <h3 className="pb-4 text-[40px] text-text font-semibold">Join Maadi</h3>
       <form
         onSubmit={handleSubmit_signup(handleSignUp)}
         className="flex flex-col gap-y-4"
@@ -50,7 +62,7 @@ const RegistrationForm = ({ setSlideFormX }) => {
           error={errors_signup?.password?.message}
         />
 
-        <button className="bg-hoverBg overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
+        <button className="bg-accent overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
           Register <FiUserPlus />
         </button>
       </form>

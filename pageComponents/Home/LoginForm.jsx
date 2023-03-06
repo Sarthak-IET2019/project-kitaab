@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 import { BiLogInCircle } from "react-icons/bi";
 import { loginSchema } from "@/schemas/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthServices } from "@/services/auth.service";
+import { useRouter } from "next/router";
+import { CODES } from "@/globals/globals";
 
 const LoginForm = ({ setSlideFormX }) => {
+  const router = useRouter();
   // Setting up react hook form
   const {
     register: register_login,
@@ -14,6 +18,15 @@ const LoginForm = ({ setSlideFormX }) => {
 
   // Handle Login
   async function handleLogin(data) {
+    let responseCode = await AuthServices.HandleUserSignIn(
+      data.email,
+      data.password
+    );
+    if (responseCode === CODES.SUCCESS) {
+      router.push("/topics");
+    } else {
+      alert("No user found or username and password not matching");
+    }
     console.log(data);
   }
   return (
@@ -39,7 +52,7 @@ const LoginForm = ({ setSlideFormX }) => {
           register={register_login}
           error={errors_login?.password?.message}
         />
-        <button className="bg-hoverBg rounded-[50px] text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
+        <button className="bg-accent rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
           Sign in <BiLogInCircle />
         </button>
       </form>
