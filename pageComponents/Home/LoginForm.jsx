@@ -52,7 +52,7 @@ const LoginForm = ({ setSlideFormX }) => {
           register={register_login}
           error={errors_login?.password?.message}
         />
-        <button className="bg-hoverBg rounded-[50px] text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
+        <button className="bg-accent rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
           Sign in <BiLogInCircle />
         </button>
       </form>

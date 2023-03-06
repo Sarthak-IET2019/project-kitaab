@@ -1,5 +1,6 @@
 import { db } from "@/Firebase";
-import { collection, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
+import { CODES } from "@/globals/globals";
+import { collection, getDocs, getDoc, doc, addDoc } from "firebase/firestore";
 
 // Fetch topics from store
 export const FetchTopicsFromStore = async () => {
@@ -9,11 +10,12 @@ export const FetchTopicsFromStore = async () => {
         ...doc.data(),
         id: doc.id,
       }));
-      return newData;
+      return newData.sort((a, b) => a?.day - b?.day);
     });
     return data;
   } catch (error) {
     console.log(error.message);
+    return error;
   }
 };
 
@@ -23,38 +25,48 @@ export const FetchTopicDetailsFromStore = async (documentId) => {
     const docRef = doc(db, "Topics", documentId);
     const data = await getDoc(docRef);
     console.log(data.data());
-    return data;
+    return data.data();
   } catch (error) {
     console.log(error.message);
   }
 };
 
-
 export const UpdateTopicDetailsInStore = async (documentId) => {
   try {
-
     const data = {
-      author :"jw lawrence",
+      author: "jw lawrence",
       day: 2,
-      description :"this is the new update",
-      id:"string",
+      description: "this is the new update",
+      id: "string",
       status: true,
-      title:"Lorem",
-      video_url:"www.youtube.com"
+      title: "Lorem",
+      video_url: "www.youtube.com",
     };
-    
-    const docRef = doc(db, "Topics", documentId);
-    updateDoc(docRef, data).then(docRef => {
-    console.log("A New Document Field has been added to an existing document");
-    })
 
-    .catch(error => {
-    console.log(error);
-    })
-    
-  } 
-  
-  catch (error) {
+    const docRef = doc(db, "Topics", documentId);
+    updateDoc(docRef, data)
+      .then((docRef) => {
+        console.log(
+          "A New Document Field has been added to an existing document"
+        );
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
     console.log(error.message);
   }
-}
+};
+
+// Add document to store
+export const AddDocumentToStore = async (payload) => {
+  try {
+    const docRef = await addDoc(collection(db, "Topics"), payload);
+    console.log(docRef);
+    return CODES.SUCCESS;
+  } catch (error) {
+    console.log(error);
+    return CODES.ERROR;
+  }
+};

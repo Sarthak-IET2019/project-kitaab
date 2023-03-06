@@ -4,7 +4,7 @@ const TopicCard = ({ topicItem }) => {
   const router = useRouter();
   return (
     <div
-      className="flex flex-col bg-white rounded pt-10 py-4 px-4 transition-all min-w-[150px] min-h-[150px] max-w-max justify-center items-center relative overflow-hidden animate-dropin hover:scale-110"
+      className="flex flex-col bg-white shadow-lg rounded pt-10 py-4 px-4 transition-all min-w-[150px] min-h-[150px] max-w-max justify-center items-center relative overflow-hidden animate-dropin hover:scale-110"
       onClick={() => {
         router.push(`topics/${topicItem?.id}`);
       }}
@@ -17,7 +17,8 @@ const TopicCard = ({ topicItem }) => {
           DAY
         </span>
       </div>
-      <div className="absolute top-0 flex w-full whitespace-nowrap h-[40px] bg-[#e63946] justify-around">
+      {/* <div className="absolute top-0 flex w-full whitespace-nowrap h-[40px] bg-text justify-around"> */}
+      <div className="absolute top-0 flex w-full whitespace-nowrap h-[40px] bg-accent justify-around">
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>
         <div className="h-1/2 w-[8px] rounded-b-full bg-white "></div>
