@@ -13,9 +13,13 @@ module.exports = {
     extend: {
       colors: {
         text: "#283618",
-        hoverBg: "#344e41",
+        accent: "#0077b5",
+        hoverBg: "#015d8f",
         blueLink: "#3498DB",
-        blue: "#e9edc9",
+        white: "#fff",
+      },
+      boxShadow: {
+        shadow: "2px 2px 10px 5px rgba(0,0,0,0.05)",
       },
       fontFamily: {
         poppins: "Poppins",

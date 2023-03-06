@@ -1,7 +1,7 @@
 const AuthorBox = ({ data }) => {
   return (
-    <div className="relative bg-white px-4 py-4 rounded-[4px] gap-y-6 flex flex-col">
-      <fieldset className="flex flex-col w-full p-4 rounded border-[2px] border-[#ebebeb] h-max">
+    <div className="relative bg-white px-4 py-4 rounded-[4px] gap-y-6 flex flex-col  shadow-shadow ">
+      <fieldset className="flex flex-col w-full p-4 rounded h-max">
         <legend>
           <h2 className="text-2xl font-semibold px-2">Your Author</h2>
         </legend>

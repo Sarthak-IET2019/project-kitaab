@@ -3,7 +3,7 @@ import { IoMdTime } from "react-icons/io";
 import { FcLike } from "react-icons/fc";
 import { FaComments } from "react-icons/fa";
 import { GetDate } from "@/globals/globals";
-const MetaData = ({ data }) => {
+const MetaData = ({ data, localLikes, setData }) => {
   return (
     <div className="flex gap-x-6 items-end justify-between mt-2">
       <div className="flex gap-x-2 items-end">
@@ -20,7 +20,7 @@ const MetaData = ({ data }) => {
         className="flex gap-x-2 items-end"
         role={"button"}
         onClick={() => {
-          setData({ ...data, likes: data.likes + 1 });
+          setData({ ...data, likes: localLikes + 1 });
         }}
       >
         <FcLike size={"24px"} />
