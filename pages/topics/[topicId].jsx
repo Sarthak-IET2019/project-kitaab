@@ -12,27 +12,12 @@ import SummaryBox from "@/pageComponents/TopicId/SummaryBox";
 import MetaData from "@/pageComponents/TopicId/TopicMetaData";
 import FaqBox from "@/pageComponents/TopicId/FaqModal";
 import Loader from "@/components/loader";
+import CommentBox from "@/pageComponents/TopicId/CommentBox";
 
 const TopicId = () => {
   const router = useRouter();
   const [data, setData] = useState(null);
   const [localLikes, setLocalLikes] = useState(data?.likes);
-  // {
-  //   title: "Arrays",
-  //   day: 1,
-  //   likes: 10,
-  //   comments: 4,
-  //   author: {
-  //     name: "Vishal Katiyar",
-  //     email: "vishal@nowornever.com",
-  //     avatar_url: "/avatar.png",
-  //   },
-  //   notes_url: null,
-  //   psp_url: "/",
-  //   videoId: "-yDH2wrKMPc",
-  //   description:
-  //     "An array is a collection of similar data elements stored at contiguous memory locations. It is the simplest data structure where each data element can be accessed directly by only using its index number. For instance, if we want to store the marks scored by a student in 5 subjects, then there’s no need to define individual variables for each subject. Rather, we can define an array that will store the data elements at contiguous memory locations.",
-  // }
   useEffect(() => {
     console.log(router?.query?.topicId);
     FetchTopicDetailsFromStore(router?.query?.topicId).then((data) => {
@@ -63,6 +48,7 @@ const TopicId = () => {
               />
               <SummaryBox summary={data?.description} />
               <FaqBox data={data} />
+              <CommentBox />
             </div>
             <div className="sticky top-16 h-max flex flex-grow w-[calc(30%-1rem)] whitespace-nowrap min-w-max flex-col  gap-y-6">
               <AuthorBox data={data} />
