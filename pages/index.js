@@ -6,8 +6,8 @@ export default function Home() {
   const [slideFormX, setSlideFormX] = useState(0);
   return (
     <div className="w-full flex flex-wrap">
-      <div className="w-full bg-blue flex justify-center items-center">
-        <div className="w-full max-w-[500px] min-h-[400px] overflow-hidden flex justify-start  gap-x-10 items-center">
+      <div className="w-full bg-white flex justify-center items-center">
+        <div className="w-full max-w-[500px] shadow-shadow min-h-[400px] overflow-x-hidden overflow-y-visible flex justify-start  gap-x-10 items-center">
           <div
             className="relative whitespace-nowrap h-max rounded-md min-w-full py-8 px-8 bg-white transition-all duration-500 max-h-max"
             style={{ transform: `translateX(${slideFormX})` }}

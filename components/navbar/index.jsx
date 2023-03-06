@@ -26,7 +26,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className=" w-full bg-blue flex px-8 py-2 sticky top-0 justify-between items-center z-40 shadow-sm">
+    <div className=" w-full bg-white flex px-8 py-2 sticky top-0 justify-between items-center z-40 shadow-sm">
       <div className="w-1/2 text-3xl font-extrabold text-text text-left">
         किताब
       </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
             अनुक्रमणिका
           </Link>
           <button
-            className="outline-none bg-text text-white font-medium p-2 rounded-full font-poppins hover:bg-hoverBg transition-all flex items-center justify-center gap-x-2"
+            className="outline-none bg-accent text-white font-medium p-2 rounded-full font-poppins hover:bg-hoverBg transition-all flex items-center justify-center gap-x-2"
             onClick={HandleLogout}
           >
             <MdLogout size={"20px"} />

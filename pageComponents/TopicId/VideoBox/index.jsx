@@ -1,7 +1,7 @@
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import YouTube from "react-youtube";
 
-const VideoBox = ({ data, setData }) => {
+const VideoBox = ({ data, setData, localLikes }) => {
   // video options
   const opts = {
     height: "390",
@@ -20,17 +20,17 @@ const VideoBox = ({ data, setData }) => {
       />
       <div className="w-full flex gap-x-4 mt-6">
         <button
-          className="bg-text text-white p-2 rounded hover:bg-hoverBg"
+          className="bg-accent text-white p-2 rounded hover:bg-hoverBg"
           onClick={() => {
-            setData({ ...data, likes: data.likes + 1 });
+            setData({ ...data, likes: localLikes + 1 });
           }}
         >
           <AiOutlineLike size={"24px"} />
         </button>
         <button
-          className="bg-text text-white p-2 rounded hover:bg-hoverBg"
+          className="bg-accent text-white p-2 rounded hover:bg-hoverBg"
           onClick={() => {
-            setData({ ...data, likes: data.likes - 1 });
+            setData({ ...data, likes: localLikes - 1 });
           }}
         >
           <AiOutlineDislike size={"24px"} />

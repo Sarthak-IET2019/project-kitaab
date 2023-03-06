@@ -24,7 +24,7 @@ const Topics = () => {
   }, []);
   return (
     <>
-      <div className="w-full bg-blue flex items-center py-2 flex-col gap-y-6 select-none">
+      <div className="w-full bg-white flex items-center py-2 flex-col gap-y-6 select-none">
         <div className="flex text-text items-end relative">
           <h2 className="border-b-4 animate-width text-text w-full text-center text-[40px] font-bold uppercase tracking-wide border-text max-w-max pb-2 whitespace-nowrap">
             || विषय सूचि ||

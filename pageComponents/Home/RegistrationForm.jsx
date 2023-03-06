@@ -62,7 +62,7 @@ const RegistrationForm = ({ setSlideFormX }) => {
           error={errors_signup?.password?.message}
         />
 
-        <button className="bg-hoverBg overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-text flex justify-center items-center gap-x-2">
+        <button className="bg-accent overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
           Register <FiUserPlus />
         </button>
       </form>
