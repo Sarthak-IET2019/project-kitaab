@@ -1,6 +1,14 @@
 import { db } from "@/Firebase";
 import { CODES } from "@/globals/globals";
-import { collection, getDocs, getDoc, doc, addDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 // Fetch topics from store
 export const FetchTopicsFromStore = async () => {
@@ -31,46 +39,45 @@ export const FetchTopicDetailsFromStore = async (documentId) => {
   }
 };
 
-export const UpdateTopicDetailsInStore = async (documentId,payload) => {
-  try {
-    const data = {
-      author: "jw lawrence",
-      day: 2,
-      description: "this is the new update",
-      id: "string",
-      status: true,
-      title: "Lorem",
-      video_url: "www.youtube.com",
-    };
-
-    const docRef = doc(db, "Topics", documentId);
-    updateDoc(docRef, data)
-      .then((docRef) => {
-        console.log(
-          "A New Document Field has been added to an existing document"
-        );
-        return CODES.SUCCESS;
-      })
-
-      .catch((error) => {
-        console.log(error);
-        return CODES.ERROR;
-      });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-// export const UpdateTopicDetailsInStore = async (documentId,payload) => {
+// export const UpdateTopicDetailsInStore = async (documentId, payload) => {
 //   try {
-    
+//     const data = {
+//       author: "jw lawrence",
+//       day: 2,
+//       description: "this is the new update",
+//       id: "string",
+//       status: true,
+//       title: "Lorem",
+//       video_url: "www.youtube.com",
+//     };
+
 //     const docRef = doc(db, "Topics", documentId);
-//     await updateDoc(docRef,payload)
-//     return CODES.SUCCESS 
+//     updateDoc(docRef, data)
+//       .then((docRef) => {
+//         console.log(
+//           "A New Document Field has been added to an existing document"
+//         );
+//         return CODES.SUCCESS;
+//       })
+
+//       .catch((error) => {
+//         console.log(error);
+//         return CODES.ERROR;
+//       });
 //   } catch (error) {
-//     return CODES.ERROR
+//     console.log(error.message);
 //   }
 // };
+
+export const UpdateTopicDetailsInStore = async (documentId, payload) => {
+  try {
+    const docRef = doc(db, "Topics", documentId);
+    await updateDoc(docRef, payload);
+    return CODES.SUCCESS;
+  } catch (error) {
+    return CODES.ERROR;
+  }
+};
 
 // Add document to store
 export const AddDocumentToStore = async (payload) => {
@@ -87,10 +94,10 @@ export const AddDocumentToStore = async (payload) => {
 // Delete document from store
 export const DeleteDocumentFromStore = async (documentId) => {
   try {
-    await deleteDoc(doc(db, "Topics", documentId))
+    await deleteDoc(doc(db, "Topics", documentId));
     return CODES.SUCCESS;
   } catch (error) {
     console.log(error);
     return CODES.ERROR;
   }
-};  
+};

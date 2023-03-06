@@ -42,6 +42,7 @@ const AddTopic = () => {
     // handle error
     if (responseCode === CODES.SUCCESS) {
       alert("Document added successfully");
+      router.push("/admin-panel");
       reset();
     } else {
       alert(
@@ -113,10 +114,11 @@ const AddTopic = () => {
           name={"description"}
           placeholder={"Topic Description"}
           {...register("description")}
-          className={`relative rounded-[4px] border-2 bg-transparent text-text  w-full outline-none py-2 px-2 font-poppins ${errors?.description?.message
-            ? "border-[#FF0000]"
-            : "border-[#e3e1e1]"
-            }`}
+          className={`relative rounded-[4px] border-2 bg-transparent text-text  w-full outline-none py-2 px-2 font-poppins ${
+            errors?.description?.message
+              ? "border-[#FF0000]"
+              : "border-[#e3e1e1]"
+          }`}
         />
         <button className="bg-accent overflow-hidden rounded-[50px] text-white w-[200px] h-[48px] hover:bg-hoverBg flex justify-center items-center gap-x-2">
           Add Topic <FiUserPlus />

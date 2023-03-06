@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { topicSchema } from "@/schemas/topic.schema";
 import { FiUserPlus } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
-import { AddDocumentToStore, UpdateTopicDetailsInStore } from "@/services/content.service";
+import { UpdateTopicDetailsInStore } from "@/services/content.service";
 const UpdateTopic = ({ data, setUpdateModalToggle }) => {
   const router = useRouter();
   console.log(data);
@@ -16,17 +16,21 @@ const UpdateTopic = ({ data, setUpdateModalToggle }) => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({defaultValues:{
-    title:data?.title,
-    day:data?.day,
-    author_name:data?.author?.name,
-    author_email:data?.author?.email,
-    video:data?.videoId,
-    psp_url:data?.psp_url,
-    description:data?.description,
-    notes_url:data?.notes_url,
-
-  }, resolver: yupResolver(topicSchema), mode: "onSubmit" });
+  } = useForm({
+    defaultValues: {
+      title: data?.title,
+      day: data?.day,
+      author_name: data?.author?.name,
+      author_email: data?.author?.email,
+      video: data?.videoId,
+      psp_url: data?.psp_url,
+      description: data?.description,
+      notes_url: data?.notes_url,
+      status: data?.status,
+    },
+    resolver: yupResolver(topicSchema),
+    mode: "onSubmit",
+  });
 
   //   Handle Update topic
   const handleUpdateTopic = async (formData) => {
@@ -44,15 +48,14 @@ const UpdateTopic = ({ data, setUpdateModalToggle }) => {
       psp_url: formData.psp_url,
       videoId: formData.video,
       description: formData.description,
-      status: false,
+      status: formData.status === "true" ? true : false,
     };
 
-    // Updating the store
-    // let responseCode = await AddDocumentToStore(payload);
-       let responseCode = await UpdateTopicDetailsInStore(data.id,payload)
+    let responseCode = await UpdateTopicDetailsInStore(data.id, payload);
     // handle error
     if (responseCode === CODES.SUCCESS) {
       alert("Document updated successfully");
+      setUpdateModalToggle(false);
       reset();
     } else {
       alert(
@@ -131,6 +134,14 @@ const UpdateTopic = ({ data, setUpdateModalToggle }) => {
           register={register}
           error={errors?.notes_url?.message}
         />
+        <select
+          {...register("status")}
+          className={`relative rounded-[4px] border-2 bg-transparent text-text  w-full outline-none py-2 px-2 font-poppins border-[#e3e1e1]
+        `}
+        >
+          <option value={true}>Open</option>
+          <option value={false}>Close</option>
+        </select>
         <textarea
           type={"text"}
           id={"description"}
