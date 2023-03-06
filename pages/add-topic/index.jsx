@@ -12,6 +12,7 @@ const AddTopic = () => {
   // Setting up react hook form
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(topicSchema), mode: "onSubmit" });
@@ -41,6 +42,7 @@ const AddTopic = () => {
     // handle error
     if (responseCode === CODES.SUCCESS) {
       alert("Document added successfully");
+      reset();
     } else {
       alert(
         "Couldn't add document. Internal error. Please contact administrator"
