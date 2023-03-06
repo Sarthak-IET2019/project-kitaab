@@ -55,7 +55,9 @@ const TopicId = () => {
           <div className="relative bg-white px-4 py-4 rounded-[4px]">
             <fieldset className="flex flex-col w-full p-4 rounded border-[2px] border-[#ebebeb] h-max">
               <legend>
-                <h2 className="text-2xl font-semibold px-2">What's next</h2>
+                <h2 className="text-2xl font-semibold px-2">
+                  What&apos;s next
+                </h2>
               </legend>
               <div className="flex flex-col gap-y-2">
                 <a href={data?.notes_url} download>
