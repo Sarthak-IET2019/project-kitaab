@@ -6,47 +6,57 @@ import { useRouter } from "next/router";
 import { topicSchema } from "@/schemas/topic.schema";
 import { FiUserPlus } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
-import { AddDocumentToStore } from "@/services/content.service";
+import { AddDocumentToStore, UpdateTopicDetailsInStore } from "@/services/content.service";
 const UpdateTopic = ({ data, setUpdateModalToggle }) => {
   const router = useRouter();
-
+  console.log(data);
   // Setting up react hook form
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(topicSchema), mode: "onSubmit" });
+  } = useForm({defaultValues:{
+    title:data?.title,
+    day:data?.day,
+    author_name:data?.author?.name,
+    author_email:data?.author?.email,
+    video:data?.videoId,
+    psp_url:data?.psp_url,
+    description:data?.description,
+    notes_url:data?.notes_url,
 
-  //   Handle Add topic
-  const handleAddTopic = async (data) => {
+  }, resolver: yupResolver(topicSchema), mode: "onSubmit" });
+
+  //   Handle Update topic
+  const handleUpdateTopic = async (formData) => {
     const payload = {
-      title: data.title,
-      day: data.day,
+      title: formData.title,
+      day: formData.day,
       likes: 0,
       comments: 0,
       author: {
-        name: data.author_name,
-        email: data.author_email,
+        name: formData.author_name,
+        email: formData.author_email,
         avatar_url: "/avatar.png",
       },
-      notes_url: "",
-      psp_url: "/",
-      videoId: data.video,
-      description: data.description,
+      notes_url: formData.notes_url,
+      psp_url: formData.psp_url,
+      videoId: formData.video,
+      description: formData.description,
       status: false,
     };
 
-    // Adding to the store
-    let responseCode = await AddDocumentToStore(payload);
-
+    // Updating the store
+    // let responseCode = await AddDocumentToStore(payload);
+       let responseCode = await UpdateTopicDetailsInStore(data.id,payload)
     // handle error
     if (responseCode === CODES.SUCCESS) {
-      alert("Document added successfully");
+      alert("Document updated successfully");
       reset();
     } else {
       alert(
-        "Couldn't add document. Internal error. Please contact administrator"
+        "Couldn't update the document. Internal error. Please contact administrator"
       );
     }
     console.log(payload);
@@ -60,7 +70,7 @@ const UpdateTopic = ({ data, setUpdateModalToggle }) => {
         <MdOutlineClose size={"24px"} />
       </button>
       <form
-        onSubmit={handleSubmit(handleAddTopic)}
+        onSubmit={handleSubmit(handleUpdateTopic)}
         className="flex flex-col gap-y-4 w-full max-w-[600px] p-6 shadow-shadow rounded bg-white"
       >
         <div className="relative ">
@@ -111,7 +121,15 @@ const UpdateTopic = ({ data, setUpdateModalToggle }) => {
           name={"psp_url"}
           placeholder={"PSP Link"}
           register={register}
-          error={errors?.psp_link?.message}
+          error={errors?.psp_url?.message}
+        />
+        <Input
+          type={"text"}
+          id={"notes_url"}
+          name={"notes_url"}
+          placeholder={"notes Link"}
+          register={register}
+          error={errors?.notes_url?.message}
         />
         <textarea
           type={"text"}
