@@ -1,5 +1,6 @@
 import { CODES } from "@/globals/globals";
 import { AuthServices } from "@/services/auth.service";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -25,12 +26,17 @@ const Navbar = () => {
     }
   };
   return (
-    <div className=" w-full bg-gradient-to-r from-blue to-purple flex px-8 py-4 sticky top-0 justify-between items-center">
-      <div className="text-2xl font-bold text-white text-left">किताब</div>
+    <div className=" w-full bg-blue flex px-8 py-2 sticky top-0 justify-between items-center z-40 shadow-sm">
+      <div className="w-1/2 text-3xl font-extrabold text-text text-left">
+        किताब
+      </div>
       {logoutView && (
-        <div>
+        <div className="relative w-1/2 flex justify-end gap-x-4 items-center">
+          <Link href={"/topics"} className="font-medium font-poppins underline">
+            अनुक्रमणिका
+          </Link>
           <button
-            className="outline-none bg-white text-purple font-medium p-4 rounded-full font-poppins hover:scale-125 transition-all"
+            className="outline-none bg-text text-white font-medium p-2 rounded-full font-poppins hover:bg-hoverBg transition-all flex items-center justify-center gap-x-2"
             onClick={HandleLogout}
           >
             <MdLogout size={"20px"} />
