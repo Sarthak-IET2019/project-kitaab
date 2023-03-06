@@ -32,8 +32,8 @@ const RegistrationForm = ({ setSlideFormX }) => {
   }
   return (
     <div className="relative w-full">
-      <h5>Hey Maadi!</h5>
-      <h3 className="pb-4 text-[40px] text-text font-semibold">Join Now</h3>
+      <h5>Heyyyy!</h5>
+      <h3 className="pb-4 text-[40px] text-text font-semibold">Join Maadi</h3>
       <form
         onSubmit={handleSubmit_signup(handleSignUp)}
         className="flex flex-col gap-y-4"
