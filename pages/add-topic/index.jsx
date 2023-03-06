@@ -42,7 +42,7 @@ const AddTopic = () => {
     // handle error
     if (responseCode === CODES.SUCCESS) {
       alert("Document added successfully");
-      router.push("/admin-panel");
+      router.push("/admin");
       reset();
     } else {
       alert(
