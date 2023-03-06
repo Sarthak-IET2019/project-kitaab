@@ -2,7 +2,21 @@ import Link from "next/link";
 import React from "react";
 import { RxUpdate } from "react-icons/rx";
 import { AiFillDelete } from "react-icons/ai";
+import { documentId } from "firebase/firestore";
+import { DeleteDocumentFromStore } from "@/services/content.service";
+import { CODES } from "@/globals/globals";
 const TopicRow = ({ data, setupdateDocData, setUpdateModalToggle }) => {
+  const HandleDelete = async (documentId) => {
+    let responseCode = await DeleteDocumentFromStore(documentId)
+    if (responseCode === CODES.SUCCESS) {
+      alert("Document Deleted Successfully")
+
+    }
+    else {
+      alert("Could Not Delete Document")
+
+    }
+  }
   return (
     <>
       <div className="w-full relative flex whitespace-nowrap py-1 px-2 overflow-hidden border-b border-[#ebebeb] border-l border-r">
@@ -17,11 +31,10 @@ const TopicRow = ({ data, setupdateDocData, setUpdateModalToggle }) => {
         </div>
         <div className="w-1/6 flex  justify-start items-center flex-grow">
           <button
-            className={`px-2 rounded-full w-[100px] text-center font-medium text-sm py-2 ${
-              data?.status
-                ? "bg-green text-green_text"
-                : "bg-red text-[#ff0000]"
-            }`}
+            className={`px-2 rounded-full w-[100px] text-center font-medium text-sm py-2 ${data?.status
+              ? "bg-green text-green_text"
+              : "bg-red text-[#ff0000]"
+              }`}
           >
             {data?.status ? "Open" : "Closed"}
           </button>
@@ -48,7 +61,9 @@ const TopicRow = ({ data, setupdateDocData, setUpdateModalToggle }) => {
                 confirm(
                   `Are you sure you want to delete this topic : ${data?.title}`
                 )
+
               ) {
+                HandleDelete(data?.id)
               }
               // call delete
             }}
