@@ -1,5 +1,6 @@
 import { db } from "@/Firebase";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { CODES } from "@/globals/globals";
+import { collection, getDocs, getDoc, doc, addDoc } from "firebase/firestore";
 
 // Fetch topics from store
 export const FetchTopicsFromStore = async () => {
@@ -24,8 +25,20 @@ export const FetchTopicDetailsFromStore = async (documentId) => {
     const docRef = doc(db, "Topics", documentId);
     const data = await getDoc(docRef);
     console.log(data.data());
-    return data;
+    return data.data();
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+// Add document to store
+export const AddDocumentToStore = async (payload) => {
+  try {
+    const docRef = await addDoc(collection(db, "Topics"), payload);
+    console.log(docRef);
+    return CODES.SUCCESS;
+  } catch (error) {
+    console.log(error);
+    return CODES.ERROR;
   }
 };
