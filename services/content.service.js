@@ -1,6 +1,6 @@
 import { db } from "@/Firebase";
 import { CODES } from "@/globals/globals";
-import { collection, getDocs, getDoc, doc, addDoc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, addDoc, deleteDoc } from "firebase/firestore";
 
 // Fetch topics from store
 export const FetchTopicsFromStore = async () => {
@@ -42,3 +42,14 @@ export const AddDocumentToStore = async (payload) => {
     return CODES.ERROR;
   }
 };
+
+// Delete document from store
+export const DeleteDocumentFromStore = async (documentId) => {
+  try {
+    await deleteDoc(doc(db, "Topics", documentId))
+    return CODES.SUCCESS;
+  } catch (error) {
+    console.log(error);
+    return CODES.ERROR;
+  }
+};  
